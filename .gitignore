@@ -4,5 +4,17 @@ run
 deploy
 *.ipr
 *.iws
-*.iml
 .gradle
+*.DS_Store
+
+# Generated files.
+bin/
+
+# Eclipse setup.
+.classpath
+.project
+.settings/
+
+# Intellij setup.
+.idea/
+*.iml
