@@ -64,7 +64,8 @@ public abstract class TilePeripheralBase extends TileGeneric
     @Override
     public final PeripheralType getPeripheralType()
     {
-        return getBlock().getPeripheralType( getBlockState() );
+        BlockPeripheralBase block = getBlock();
+        return (block == null ? null : block.getPeripheralType( getBlockState() ));
     }
 
     @Override
