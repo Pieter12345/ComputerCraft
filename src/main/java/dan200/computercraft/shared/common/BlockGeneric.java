@@ -68,8 +68,8 @@ public abstract class BlockGeneric extends Block implements
     @Override
     public final boolean removedByPlayer( World world, BlockPos pos, EntityPlayer player, boolean willHarvest )
     {
-    	if( !world.isRemote )
-    	{
+        if( !world.isRemote )
+        {
             // Drop items
             int fortune = EnchantmentHelper.getFortuneModifier( player );
             boolean creative = player.capabilities.isCreativeMode;
@@ -118,11 +118,11 @@ public abstract class BlockGeneric extends Block implements
             TileGeneric generic = (TileGeneric)tile;
             generic.destroy();
         }
-    	super.breakBlock( world, pos, newState );
+        super.breakBlock( world, pos, newState );
         world.removeTileEntity( pos );
     }
 
-	@Override
+    @Override
     public final ItemStack getPickBlock( MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player )
     {
         TileEntity tile = world.getTileEntity( pos );
@@ -158,6 +158,12 @@ public abstract class BlockGeneric extends Block implements
         TileEntity tile = world.getTileEntity( pos );
         if( tile != null && tile instanceof TileGeneric )
         {
+            // Fix TileEntity position and world if they are not set.
+            if(tile.getWorld() == null || tile.getPos() == null) {
+                tile.setWorldObj(world);
+                tile.setPos(pos);
+            }
+
             TileGeneric generic = (TileGeneric)tile;
             generic.onNeighbourChange();
         }
