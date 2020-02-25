@@ -88,7 +88,7 @@ public class TurtleMoveCommand implements ITurtleCommand
                                 (double) direction.getFrontOffsetY(),
                                 (double) direction.getFrontOffsetZ()
                             );
-                            if( !oldWorld.func_147461_a( pushedBB ).isEmpty() ) // getCollidingBlockBoundingBoxes
+                            if( !oldWorld.getCollisionBoxes( pushedBB ).isEmpty() )
                             {
                                 return TurtleCommandResult.failure( "Movement obstructed" );
                             }
